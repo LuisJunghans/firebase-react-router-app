@@ -18,16 +18,15 @@ export default function Register() {
     setError('')
     try {
       // cria no Auth
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+      const { user } = await createUserWithEmailAndPassword(auth, email, password)
       // grava no Firestore
-      await setDoc(doc(db, 'users', user.uid), {
+      await setDoc(doc(db, 'usuarios', user.uid), {
         uid: user.uid,
         email,
         firstName,
         lastName,
         dob
-      });
+      })
       navigate('/login')  // redireciona para login
     } catch(err) {
       setError(err.message)
