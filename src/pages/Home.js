@@ -11,7 +11,7 @@ export default function Home() {
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async user => {
       if (!user) return navigate('/login')
-      const snap = await getDoc(doc(db, 'users', user.uid))
+      const snap = await getDoc(doc(db, 'usuarios', user.uid))
       if (snap.exists()) setUserData(snap.data())
     })
     return unsub
